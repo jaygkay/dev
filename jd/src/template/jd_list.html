@@ -1,0 +1,173 @@
+{% extends "layout_on.html" %}
+{% block body %}
+<style>
+  #jd-container{
+    margin-left:20px;
+    margin-right:20px;
+    font-size:0.9em;
+    font-family:arial;
+
+  }
+  #left{
+        font-size:0.9em;
+        width:45%;
+        height:60%;
+        float:left;
+        overflow:auto;
+        font-family:arial;
+        background-color:#eaebef;
+        border: 1px solid #bcbcbc;
+    }
+    #right{
+        font-size:0.9em;
+        width:52%;
+        height:60%;
+        float:right;
+        overflow:auto;
+        font-family:arial;
+        background-color:#eaebef;
+        border: 1px solid #bcbcbc;
+    }
+  #search{
+    margin-bottom:20px;
+    height:30px;
+    align:center;
+    display:flex;
+  }
+  #jd-table{
+    height:600px;
+    overflow:auto;
+    background-color:#eaebef;
+  }
+  #table-list{
+    width:100%;
+  }
+  #table-each{
+    position: relative;
+    float: left;
+    width:20%;
+    height: 55px;
+    text-align:center;
+    background-color:#eaebef;
+  }
+  h3{
+    margin-left:30px;
+  }
+  ul{
+    display:flex;
+    align : "center";
+  }
+  fieldset{
+    border: solid 0.5px #708090;
+    background-color:#eaebef;
+  }
+  #button {
+      text-align: center;
+      font-size: 18px;
+}
+</style>
+
+  <div id = "jd-container">
+    <div id = "left">
+      <div id = "search">
+        <h3>Total JD {{cnt_all}}</h3>
+          <form>
+            <p><input id = "button" type="submit" value = "초기화" formaction="/" style="margin-left:90%;"></p>
+          </form>
+      </div>
+
+      <fieldset>
+      <div id = "jd-table">
+        <h4>법인 별 JD</h4>
+        <fieldset>
+          <div id = "table-list">
+              {%for i in cnt_group_comp%}
+                <div id = "table-each" >
+                    <form action = "/main" method="get">
+                        <input type = "hidden"  name = "법인" value = "{{i[0]}}" >
+                        <input id = "button" type="submit" value = "{{i[0]}}">
+                    </form>
+                  <p style = "text-align:center;">{{i[1]}}</p>
+                </div>
+              {%endfor%}
+          </div>
+        </fieldset>
+
+        <h4>직군 별 JD</h4>
+        <fieldset>
+          <div id = "table-list">
+            {%for i in cnt_group_comp1%}
+              <div id = "table-each" >
+                  <form action = "/main" method="get">
+                      <input type = "hidden" name = "직군" value = "{{i[0]}}" >
+                      <input id = "button" type="submit" value = "{{i[0]}}">
+                  </form>
+                <p style = "text-align:center;">{{i[1]}}</p>
+              </div>
+            {%endfor%}
+          </div>
+        </fieldset>
+
+        <h4>직렬 별 JD</h4>
+        <fieldset>
+          <div id = "table-list">
+            {%for i in cnt_group_comp2%}
+              <div id = "table-each" >
+                  <form action = "/main" method="get">
+                      <input type = "hidden" name = "직렬" value = "{{i[0]}}" >
+                      <input id = "button" type="submit" value = "{{i[0]}}">
+                  </form>
+                <p style = "text-align:center;">{{i[1]}}</p>
+              </div>
+            {%endfor%}
+          </div>
+        </fieldset>
+
+      </div>
+<!--      <p>{{cnt_group_comp[0][0]}}:{{cnt_group_comp[0][1]}}</p>-->
+
+    </div>
+
+    <div id = "right">
+      <div id = "search">
+          <h3>"{{key}} {{comp_word}}" 검색 결과 </h3>
+           <h3 style="margin-left:30%;"><form action = '/main' method = 'GET'>
+          직무 검색: <input type = "text" name = '검색' style = "height:12px;">
+          <input type="submit" value = '검색'></form></h3>
+      </div>
+
+      <fieldset>
+      <div id = "jd-table">
+          <ul>
+          <table>
+            <thead>
+            <th>법인명</th>
+            <th>팀명</th>
+            <th>직군</th>
+            <th>직렬</th>
+            <th>직무</th>
+            <th>JD</th>
+            </thead>
+            {%for i in messages%}
+            <tbody>
+            <tr>
+              <td>{{i[0]}}</td>
+              <td>{{i[1]}}</td>
+              <td>{{i[2]}}</td>
+              <td>{{i[3]}}</td>
+              <td>{{i[4]}}</td>
+              <td><form action = '/jd_show' method = 'GET' target = "result"
+                    onsubmit="window.open('','result','width=800,height=700');">
+                    <input type ="hidden"  name = "file_name" value="{{i[5]}}">
+                    <input type="submit" value="보기"></form></td>
+            </tr>
+            </tbody>
+            {%endfor%}
+          </table>
+          </ul>
+      </div>
+        </fieldset>
+    </div>
+  </div>
+
+{% endblock %}

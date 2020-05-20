@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html lang="kr">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            div.navigation{
+                 font-size:1.1em;
+                 margin-bottom:30px;
+                 background-color:#fff;
+                 border-bottom: 1px solid #dadadc;
+                 display:flex;
+                 font-family:arial;
+                 font-weight:bolder;
+                 padding: 30px 30px 10px 20px;
+                }
+            a.navi-left{
+                margin-left:50px;
+                font-size:1.2em;
+            }
+            a.navi-right{
+                margin-left:50px;
+                font-size:1.0em;
+            }
+            div.navi-left{
+                width:40%;
+                margin-left:50px;
+            }
+            div.navi-right{
+                width:40%;
+                margin-left:50px;
+                display:flex;
+            }
+            div.container{
+                background-color:#eaebef;
+                height:100%
+                font-family:arial;
+            }
+            div.footer{
+                font-size:0.5em;
+            }
+            h1{
+                text-align:center;
+                font-size:2.5em;
+            }
+            h4{
+                font-family:arial;
+            }
+            th{
+                text-align:left;
+                font-weight:bolder;
+            }
+            li{
+                display:flex;
+            }
+            <!--
+            A:link {text-decoration:none; color:black;}
+            A:visited {text-decoration:none; color:black;}
+            A:hover {text-decoration:none; color:red;}
+            -->
+            </style>
+        <title>피플LAB-JD HOME</title>
+    </head>
+
+    <body style = "background-color: #eaebef;">
+        <div class = 'navigation'>
+            <div class = "logo" style = "width:10%;">
+                <a class = "navi" href="/main">
+                    <img src = "https://www.bighitcorp.com/images/header_logo.png">
+                </a>
+            </div>
+            <div class = "navi-left">
+                <a class = "navi-left" href="/main">HOME</a>
+                <a class = "navi-left" href="/jd_create">JD생성</a>
+            </div>
+            <div class = "navi-right">
+                <a class = "navi-right" href ="/login_page"  style = "margin-left:35%;">{{the_name}}_page</a>
+                <a class = "navi-right" href="/logout">
+                    <img src = "{{the_pic}}" style = "width:40px;height:auto;border-radius:20px;position:fixed;top:30px;right:50px;">
+                </a>
+            </div>
+        </div>
+
+        <div class = "container">
+            <div class = "messages">
+                {% with flashes = get_flashed_messages() %}
+                    {% if flashes %}
+                    <ul class=flashes style = "font-family:Malgun Gothic;background-color:#eaebef;">
+                        {% for message in flashes %}
+                        <li>{{ message }}
+                            {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endwith %}
+
+            </div>
+            <div class='body' style = "font-family:Arial;">
+                    {% block body %} {% endblock %}
+            </div>
+            <div class='footer' style = "margin-right:50px;float:right;">
+                Copyright © 2020 People LAB all rights reserved.
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,62 @@
+
+<style>
+    div.preview{
+    margin-top:50px;
+    margin-bottom:50px;
+    }
+    div.content{
+        width:50%;
+        position:absolute;
+        top:5%;
+        left:25%;
+        bottom:5%;
+    }
+</style>
+
+<div class = "preview" style = "font-family:Arial;">
+    <div class = "content">
+        <fieldset>
+        <ul>
+            <h3>직무명 : {{job_posi}} </h3>
+
+            <h3>직무 Summary</h3>
+                <p>{{job_summ}}</p>
+
+            <h3>[주요 업무책임]</h3>
+            {%for resp in job_resp%}
+                <p> • {{ resp }}</p>
+
+            {%endfor%}
+
+            <h3> {{tit}} </h3>
+            {%for envr in val4%}
+                <p> {{ envr }}</p>
+            {%endfor%}
+
+            <h3> [필수 자격요건] </h3>
+                <p> • {{ job_degr }} 이상 </p>
+
+                {%for deg in deg_val%}
+                    <p> • {{ deg }}</p>
+                {%endfor%}
+
+                <p> • {{ job_lst }}</p>
+
+                {%for pref in job_main%}
+                    <p> • {{ pref }}</p>
+                {%endfor%}
+
+             <h3> [선호 자격요건] </h3>
+            {%for pref in job_pref%}
+                <p> • {{ pref }}</p>
+            {%endfor%}
+
+            <h3> [필요역량] </h3>
+            {%for capa in job_capa%}
+                <p> • {{ capa }}</p>
+                <input type = 'hidden' name = 'capa' value = "{{capa}}"/>
+            {%endfor%}
+        </ul>
+        </fieldset>
+    </div>
+</div >
