@@ -3,3 +3,8 @@ pandas
 httplib2
 requests
 googleapiclientsud
+google-api-python-client
+flask
+oauth2client
+flask_login
+wtforms
